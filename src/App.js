@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState}from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Header from './components/Header';
+import Clima from './components/Clima';
+import Formulario from './components/Formulario';
 
 function App() {
+  const [resultado, setResultado] = useState({})
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      <Header titulo="App del Clima"></Header>
+      <section className="container">
+        <div className="row">
+          <div className="col-sm-12 col-md-6">
+            {
+              (Object.entries(resultado).length !== 0) ? <Clima resultado={resultado}></Clima> : null
+            }
+          </div>
+          <div className="col-sm-12 col-md-6">
+            <Formulario setResultado={setResultado}></Formulario>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
